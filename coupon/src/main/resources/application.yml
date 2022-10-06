@@ -39,6 +39,10 @@ logging:
     org.hibernate.type: trace
     org.springframework.cloud: debug
 
+api:
+  url:
+    point: point:8082
+
 
 server:
   port: 8081
@@ -68,5 +72,9 @@ spring:
         event-out:
           destination: wallet
           contentType: application/json
+
+api:
+  url:
+    point: point:8080
 
 

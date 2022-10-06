@@ -11,6 +11,7 @@ public class PointHateoasProcessor implements RepresentationModelProcessor<Entit
 
     @Override
     public EntityModel<Point> process(EntityModel<Point> model) {
+        model.add(Link.of(model.getRequiredLink("self").getHref() + "/use").withRel("use"));
 
         
         return model;

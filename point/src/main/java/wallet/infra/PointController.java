@@ -20,4 +20,23 @@ public class PointController {
 
 
 
+    @RequestMapping(value = "points/{id}/use",
+        method = RequestMethod.PUT,
+        produces = "application/json;charset=UTF-8")
+    public Point use(@PathVariable(value = "id") Long id, @RequestBody UseCommand useCommand, HttpServletRequest request, HttpServletResponse response) throws Exception {
+            System.out.println("##### /point/use  called #####");
+            Optional<Point> optionalPoint = pointRepository.findById(id);
+            
+            optionalPoint.orElseThrow(()-> new Exception("No Entity Found"));
+            Point point = optionalPoint.get();
+            point.use(useCommand);
+            
+            pointRepository.save(point);
+            return point;
+            
+    }
+    
+
+
+
 }

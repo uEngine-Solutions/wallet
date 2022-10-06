@@ -51,6 +51,7 @@ public class Point  {
 
 
 
+<<<<<<< HEAD
 
     public static void usePoint(CouponPurchased couponPurchased){
 
@@ -72,7 +73,11 @@ public class Point  {
 
 
         
+=======
+    public void use(UseCommand useCommand){
+>>>>>>> origin/template
     }
+
     public static void compensatePoint(CouponCancelled couponCancelled){
 
         /** Example 1:  new item 
