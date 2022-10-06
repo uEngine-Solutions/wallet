@@ -23,22 +23,6 @@ public class PolicyHandler{
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString){}
 
-    @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='CouponPurchased'")
-    public void wheneverCouponPurchased_UsePoint(@Payload CouponPurchased couponPurchased){
-
-        CouponPurchased event = couponPurchased;
-        System.out.println("\n\n##### listener UsePoint : " + couponPurchased + "\n\n");
-
-
-        
-
-        // Sample Logic //
-        Point.usePoint(event);
-        
-
-        
-
-    }
 
     @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='CouponCancelled'")
     public void wheneverCouponCancelled_CompensatePoint(@Payload CouponCancelled couponCancelled){
