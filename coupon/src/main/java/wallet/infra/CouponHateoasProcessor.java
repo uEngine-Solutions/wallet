@@ -11,6 +11,7 @@ public class CouponHateoasProcessor implements RepresentationModelProcessor<Enti
 
     @Override
     public EntityModel<Coupon> process(EntityModel<Coupon> model) {
+        model.add(Link.of(model.getRequiredLink("self").getHref() + "/cancel-coupon").withRel("cancel-coupon"));
 
         
         return model;

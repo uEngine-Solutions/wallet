@@ -21,4 +21,23 @@ public class CouponController {
 
 
 
+    @RequestMapping(value = "coupons/{id}/cancel-coupon",
+        method = RequestMethod.PUT,
+        produces = "application/json;charset=UTF-8")
+    public Coupon cancelCoupon(@PathVariable(value = "id") Long id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+            System.out.println("##### /coupon/cancelCoupon  called #####");
+            Optional<Coupon> optionalCoupon = couponRepository.findById(id);
+            
+            optionalCoupon.orElseThrow(()-> new Exception("No Entity Found"));
+            Coupon coupon = optionalCoupon.get();
+            coupon.cancelCoupon();
+            
+            couponRepository.save(coupon);
+            return coupon;
+            
+    }
+    
+
+
+
 }

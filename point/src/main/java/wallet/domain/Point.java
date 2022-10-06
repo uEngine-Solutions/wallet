@@ -73,6 +73,27 @@ public class Point  {
 
         
     }
+    public static void compensatePoint(CouponCancelled couponCancelled){
+
+        /** Example 1:  new item 
+        Point point = new Point();
+        repository().save(point);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(couponCancelled.get???()).ifPresent(point->{
+            
+            point // do something
+            repository().save(point);
+
+
+         });
+        */
+
+        
+    }
 
 
 }
