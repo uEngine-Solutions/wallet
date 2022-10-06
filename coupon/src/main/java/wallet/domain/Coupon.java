@@ -50,18 +50,14 @@ public class Coupon  {
     @PostPersist
     public void onPostPersist(){
 
-        //Following code causes dependency to external APIs
-        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
-
-        wallet.external.UseCommand useCommand = new wallet.external.UseCommand();
-        // mappings goes here
-        CouponApplication.applicationContext.getBean(wallet.external.PointService.class)
-            .use(/* get???(), */ useCommand);
-
-
 
         CouponPurchased couponPurchased = new CouponPurchased(this);
         couponPurchased.publishAfterCommit();
+
+        // Get request from Point
+        //wallet.external.Point point =
+        //    Application.applicationContext.getBean(wallet.external.PointService.class)
+        //    .getPoint(/** mapping value needed */);
 
     }
 

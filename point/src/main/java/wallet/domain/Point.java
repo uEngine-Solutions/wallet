@@ -54,6 +54,27 @@ public class Point  {
     public void use(UseCommand useCommand){
     }
 
+    public static void usePoint(CouponPurchased couponPurchased){
+
+        /** Example 1:  new item 
+        Point point = new Point();
+        repository().save(point);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(couponPurchased.get???()).ifPresent(point->{
+            
+            point // do something
+            repository().save(point);
+
+
+         });
+        */
+
+        
+    }
     public static void compensatePoint(CouponCancelled couponCancelled){
 
         /** Example 1:  new item 
