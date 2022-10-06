@@ -2,7 +2,7 @@ package wallet.domain;
 
 import wallet.domain.CouponPurchased;
 import wallet.external.PointService;
-import wallet.external.UseCommand;
+//import wallet.external.UseCommand;
 import wallet.CouponApplication;
 import javax.persistence.*;
 import java.util.List;
@@ -52,35 +52,32 @@ public class Coupon  {
     @PostPersist
     public void onPostPersist(){
 
-<<<<<<< HEAD
         //Following code causes dependency to external APIs
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
-        UseCommand useCommand = new UseCommand();
-        useCommand.setAmount(getPrice());
+        // UseCommand useCommand = new UseCommand();
+        // useCommand.setAmount(getPrice());
 
-        PointService pointService = CouponApplication.applicationContext.getBean(PointService.class);
-        pointService.use(getBuyer(), useCommand);
-=======
->>>>>>> origin/template
+        // PointService pointService = CouponApplication.applicationContext.getBean(PointService.class);
+        // pointService.use(getBuyer(), useCommand);
 
         CouponPurchased couponPurchased = new CouponPurchased(this);
         couponPurchased.publishAfterCommit();
 
-<<<<<<< HEAD
     
-=======
-        // Get request from Point
-        //wallet.external.Point point =
-        //    Application.applicationContext.getBean(wallet.external.PointService.class)
-        //    .getPoint(/** mapping value needed */);
+        //Get request from Point
+        wallet.external.Point point =
+           CouponApplication.applicationContext.getBean(wallet.external.PointService.class)
+           .getPoint(getBuyer());
+
+        if(point.getAmount() < getPrice()) 
+            throw new RuntimeException("Not enough point!");
 
     }
 
     public static CouponRepository repository(){
         CouponRepository couponRepository = CouponApplication.applicationContext.getBean(CouponRepository.class);
         return couponRepository;
->>>>>>> origin/template
     }
 
 

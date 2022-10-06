@@ -52,32 +52,6 @@ public class Point  {
 
 
 
-    // public static void usePoint(CouponPurchased couponPurchased){
-
-    //     /** Example 1:  new item 
-    //     Point point = new Point();
-    //     repository().save(point);
-
-    //     */
-
-    //     /** Example 2:  finding and process        */
-        
-    //     repository().findByHolder(couponPurchased.getBuyer()).ifPresent(point->{
-    //         UseCommand useCommand = new UseCommand();
-    //         useCommand.setAmount(couponPurchased.getPrice());
-    //         point.use(useCommand);
-
-    //         repository().save(point);
-
-
-    //      });
-    // }
-
-        
-    public void use(UseCommand useCommand){
-        setAmount(getAmount() - useCommand.getAmount());
-    }
-
     public static void usePoint(CouponPurchased couponPurchased){
 
         /** Example 1:  new item 
@@ -86,19 +60,29 @@ public class Point  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process        */
         
-        repository().findById(couponPurchased.get???()).ifPresent(point->{
-            
-            point // do something
+        repository().findByHolder(couponPurchased.getBuyer()).ifPresent(point->{
+            UseCommand useCommand = new UseCommand();
+
+            if(point.getAmount() < couponPurchased.getPrice()){
+
+            }
+
+            useCommand.setAmount(couponPurchased.getPrice());
+            point.use(useCommand);
+
             repository().save(point);
 
 
          });
-        */
+    }
 
         
+    public void use(UseCommand useCommand){
+        setAmount(getAmount() - useCommand.getAmount());
     }
+
     public static void compensatePoint(CouponCancelled couponCancelled){
 
         /** Example 1:  new item 
