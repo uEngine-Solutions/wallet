@@ -56,10 +56,6 @@ public class Coupon  {
         couponPurchased.publishAfterCommit();
 
 
-
-        CouponCancelled couponCancelled = new CouponCancelled(this);
-        couponCancelled.publishAfterCommit();
-
     }
 
     public static CouponRepository repository(){
@@ -70,6 +66,12 @@ public class Coupon  {
 
 
     public void cancelCoupon(){
+
+
+        setStatus("CANCELLED");
+
+        CouponCancelled couponCancelled = new CouponCancelled(this);
+        couponCancelled.publishAfterCommit();
     }
 
 

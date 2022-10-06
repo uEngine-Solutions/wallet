@@ -81,16 +81,16 @@ public class Point  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process      */
         
-        repository().findById(couponCancelled.get???()).ifPresent(point->{
+        repository().findByHolder(couponCancelled.getBuyer()).ifPresent(point->{
             
-            point // do something
+            point.setAmount(point.getAmount() + couponCancelled.getPrice()); // do something
             repository().save(point);
 
 
          });
-        */
+  
 
         
     }

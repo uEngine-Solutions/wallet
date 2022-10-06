@@ -12,4 +12,5 @@ public interface PointRepository extends PagingAndSortingRepository<Point, Long>
 
     Optional<Point> findByHolder(String buyer);
 
+
 }
