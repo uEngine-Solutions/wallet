@@ -41,7 +41,7 @@ logging:
 
 api:
   url:
-    point: point:8082
+    point: localhost:8082
 
 
 server:

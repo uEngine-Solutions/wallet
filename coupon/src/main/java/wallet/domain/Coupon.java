@@ -1,6 +1,8 @@
 package wallet.domain;
 
 import wallet.domain.CouponPurchased;
+import wallet.external.PointService;
+import wallet.external.UseCommand;
 import wallet.CouponApplication;
 import javax.persistence.*;
 import java.util.List;
@@ -53,42 +55,27 @@ public class Coupon  {
         //Following code causes dependency to external APIs
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
-        wallet.external.UseCommand useCommand = new wallet.external.UseCommand();
-        // mappings goes here
-        CouponApplication.applicationContext.getBean(wallet.external.PointService.class)
-            .use(/* get???(), */ useCommand);
+        UseCommand useCommand = new UseCommand();
+        useCommand.setAmount(getPrice());
 
-
+        PointService pointService = CouponApplication.applicationContext.getBean(PointService.class);
+        pointService.use(getBuyer(), useCommand);
 
         CouponPurchased couponPurchased = new CouponPurchased(this);
         couponPurchased.publishAfterCommit();
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/template
-    }
-
-    public static CouponRepository repository(){
-        CouponRepository couponRepository = CouponApplication.applicationContext.getBean(CouponRepository.class);
-        return couponRepository;
+    
     }
 
 
 
     public void cancelCoupon(){
-<<<<<<< HEAD
 
 
         setStatus("CANCELLED");
 
         CouponCancelled couponCancelled = new CouponCancelled(this);
         couponCancelled.publishAfterCommit();
-=======
-        CouponCancelled couponCancelled = new CouponCancelled(this);
-        couponCancelled.publishAfterCommit();
-
->>>>>>> origin/template
     }
 
 

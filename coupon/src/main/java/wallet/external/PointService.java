@@ -10,7 +10,7 @@ import java.util.Date;
 
 @FeignClient(name = "point", url = "${api.url.point}")
 public interface PointService {
-    @RequestMapping(method= RequestMethod.PUT, path="/points/{id}/use")
-    public void use(@PathVariable("id") Long id, @RequestBody UseCommand useCommand );
+    @RequestMapping(method= RequestMethod.PUT, path="/points/{holder}/use")
+    public void use(@PathVariable("holder") String holder, @RequestBody UseCommand useCommand );
 }
 

@@ -51,31 +51,31 @@ public class Point  {
 
 
 
-<<<<<<< HEAD
 
-    public static void usePoint(CouponPurchased couponPurchased){
+    // public static void usePoint(CouponPurchased couponPurchased){
 
-        /** Example 1:  new item 
-        Point point = new Point();
-        repository().save(point);
+    //     /** Example 1:  new item 
+    //     Point point = new Point();
+    //     repository().save(point);
 
-        */
+    //     */
 
-        /** Example 2:  finding and process        */
+    //     /** Example 2:  finding and process        */
         
-        repository().findByHolder(couponPurchased.getBuyer()).ifPresent(point->{
-            
-            point.setAmount(point.getAmount() - couponPurchased.getPrice()); // do something
-            repository().save(point);
+    //     repository().findByHolder(couponPurchased.getBuyer()).ifPresent(point->{
+    //         UseCommand useCommand = new UseCommand();
+    //         useCommand.setAmount(couponPurchased.getPrice());
+    //         point.use(useCommand);
+
+    //         repository().save(point);
 
 
-         });
-
+    //      });
+    // }
 
         
-=======
     public void use(UseCommand useCommand){
->>>>>>> origin/template
+        setAmount(getAmount() - useCommand.getAmount());
     }
 
     public static void compensatePoint(CouponCancelled couponCancelled){
